@@ -3,6 +3,8 @@ name: Build Axon Reborn
 on:
   push:
     branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
@@ -22,18 +24,25 @@ jobs:
         
     - name: Install dependencies
       run: |
-        brew install dpkg ldid
+        brew install dpkg ldid xz
         
     - name: Setup Theos environment
       run: |
         echo "THEOS=$(pwd)/theos" >> $GITHUB_ENV
+        echo "THEOS_DEVICE_IP=127.0.0.1" >> $GITHUB_ENV
         
     - name: Download iOS SDK
       run: |
         mkdir -p $THEOS/sdks
         curl -L -o $THEOS/sdks/iPhoneOS14.5.sdk.tar.gz \
-          "https://github.com/chrisharper22/sdks/releases/download/iOS14.5/iPhoneOS14.5.sdk.tar.gz"
+          "https://github.com/chrisharper22/sdks/releases/download/iOS14.5/iPhoneOS14.5.sdk.tar.gz" || \
+        curl -L -o $THEOS/sdks/iPhoneOS14.5.sdk.tar.gz \
+          "https://github.com/xybp888/iOS-SDKs/releases/download/14.5/iPhoneOS14.5.sdk.tar.gz" || \
+        curl -L -o $THEOS/sdks/iPhoneOS14.5.sdk.tar.gz \
+          "https://github.com/kabiroberai/ios-sdks/releases/download/14.5/iPhoneOS14.5.sdk.tar.gz"
+        file $THEOS/sdks/iPhoneOS14.5.sdk.tar.gz
         cd $THEOS/sdks && tar -xzf iPhoneOS14.5.sdk.tar.gz && rm iPhoneOS14.5.sdk.tar.gz
+        ls -la $THEOS/sdks/
         
     - name: Download libroot
       run: |
@@ -46,9 +55,28 @@ jobs:
         export THEOS=$(pwd)/theos
         make clean
         make package
+        ls -la packages/
         
     - name: Upload DEB artifact
       uses: actions/upload-artifact@v4
       with:
         name: Axon-Reborn-Deb
         path: packages/*.deb
+        
+    - name: Create Release
+      if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: packages/*.deb
+        body: |
+          Axon Reborn - iOS 14-16 Rootless/RootHide
+          
+          ## 新功能
+          - 支持 iOS 14-16 无根/隐根越狱
+          - 上滑图标清除单个应用通知
+          - 下滑图标清除全部通知
+          
+          ## 安装
+          通过 Sileo/Filza 安装此 deb 包
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
