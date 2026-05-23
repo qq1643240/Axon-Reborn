@@ -6,8 +6,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = Axon
 
-$(TWEAK_NAME)_FILES =     Tweak/Tweak.xm     Tweak/AXNView.m     Tweak/AXNManager.m     Tweak/AXNAppCell.m     Tweak/AXNRequestWrapper.m
-
+$(TWEAK_NAME)_FILES = Tweak/Tweak.xm Tweak/AXNView.m Tweak/AXNManager.m Tweak/AXNAppCell.m Tweak/AXNRequestWrapper.m
 $(TWEAK_NAME)_FRAMEWORKS = UIKit CoreGraphics
 $(TWEAK_NAME)_PRIVATE_FRAMEWORKS = MediaPlayer
 $(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-deprecated-declarations
@@ -16,7 +15,7 @@ $(TWEAK_NAME)_LDFLAGS = -lroothide
 include $(THEOS_MAKE_PATH)/tweak.mk
 
 after-install::
-    install.exec "sbreload"
+	install.exec "sbreload"
 
 SUBPROJECTS += Preferences
 include $(THEOS_MAKE_PATH)/aggregate.mk
