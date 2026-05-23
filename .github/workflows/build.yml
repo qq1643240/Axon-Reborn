@@ -31,21 +31,20 @@ jobs:
         export THEOS=$(pwd)/theos
         mkdir -p $THEOS/sdks
         
-        echo "Downloading iOS SDK..."
-        curl -L --fail -o /tmp/sdk.tar.gz \
-          "https://github.com/chrisharper22/sdks/releases/download/iOS14.5/iPhoneOS14.5.sdk.tar.gz" || \
-        curl -L --fail -o /tmp/sdk.tar.gz \
-          "https://github.com/xybp888/iOS-SDKs/releases/download/14.5/iPhoneOS14.5.sdk.tar.gz" || \
-        curl -L --fail -o /tmp/sdk.tar.gz \
-          "https://github.com/kabiroberai/ios-sdks/releases/download/14.5/iPhoneOS14.5.sdk.tar.gz"
+        echo "Downloading iOS SDK from official Theos repo..."
+        curl -L --fail -o /tmp/sdk.tar.xz \
+          "https://github.com/theos/sdks/releases/download/1/iPhoneOS14.5.sdk.tar.xz"
         
-        ls -la /tmp/sdk.tar.gz
-        file /tmp/sdk.tar.gz
+        echo "Downloaded file info:"
+        ls -la /tmp/sdk.tar.xz
+        file /tmp/sdk.tar.xz
         
+        echo "Extracting SDK..."
         cd $THEOS/sdks
-        tar -xzf /tmp/sdk.tar.gz
-        rm /tmp/sdk.tar.gz
+        tar -xJf /tmp/sdk.tar.xz
+        rm /tmp/sdk.tar.xz
         
+        echo "SDK directory contents:"
         ls -la $THEOS/sdks/
         
     - name: Download libroot
