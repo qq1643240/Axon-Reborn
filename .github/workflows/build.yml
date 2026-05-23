@@ -26,33 +26,41 @@ jobs:
       run: |
         brew install dpkg ldid xz
         
-    - name: Setup Theos environment
+    - name: Download and setup iOS SDK
       run: |
-        echo "THEOS=$(pwd)/theos" >> $GITHUB_ENV
-        echo "THEOS_DEVICE_IP=127.0.0.1" >> $GITHUB_ENV
-        
-    - name: Download iOS SDK
-      run: |
+        export THEOS=$(pwd)/theos
         mkdir -p $THEOS/sdks
-        curl -L -o $THEOS/sdks/iPhoneOS14.5.sdk.tar.gz \
+        
+        echo "Downloading iOS SDK..."
+        curl -L --fail -o /tmp/sdk.tar.gz \
           "https://github.com/chrisharper22/sdks/releases/download/iOS14.5/iPhoneOS14.5.sdk.tar.gz" || \
-        curl -L -o $THEOS/sdks/iPhoneOS14.5.sdk.tar.gz \
+        curl -L --fail -o /tmp/sdk.tar.gz \
           "https://github.com/xybp888/iOS-SDKs/releases/download/14.5/iPhoneOS14.5.sdk.tar.gz" || \
-        curl -L -o $THEOS/sdks/iPhoneOS14.5.sdk.tar.gz \
+        curl -L --fail -o /tmp/sdk.tar.gz \
           "https://github.com/kabiroberai/ios-sdks/releases/download/14.5/iPhoneOS14.5.sdk.tar.gz"
-        file $THEOS/sdks/iPhoneOS14.5.sdk.tar.gz
-        cd $THEOS/sdks && tar -xzf iPhoneOS14.5.sdk.tar.gz && rm iPhoneOS14.5.sdk.tar.gz
+        
+        ls -la /tmp/sdk.tar.gz
+        file /tmp/sdk.tar.gz
+        
+        cd $THEOS/sdks
+        tar -xzf /tmp/sdk.tar.gz
+        rm /tmp/sdk.tar.gz
+        
         ls -la $THEOS/sdks/
         
     - name: Download libroot
       run: |
+        export THEOS=$(pwd)/theos
         mkdir -p $THEOS/lib
         curl -L -o $THEOS/lib/libroothide.dylib \
           "https://raw.githubusercontent.com/opa334/libroot/main/libroothide.dylib" || true
+        ls -la $THEOS/lib/
         
     - name: Build Tweak
       run: |
         export THEOS=$(pwd)/theos
+        echo "THEOS=$THEOS"
+        ls -la $THEOS/sdks/
         make clean
         make package
         ls -la packages/
