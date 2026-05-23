@@ -21,6 +21,7 @@ jobs:
         repository: theos/theos
         path: theos
         submodules: recursive
+        token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Checkout iOS SDKs
       uses: actions/checkout@v4
@@ -48,7 +49,7 @@ jobs:
         path: packages/*.deb
         
     - name: Create Release
-      if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+      if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')"
       uses: softprops/action-gh-release@v1
       with:
         files: packages/*.deb
