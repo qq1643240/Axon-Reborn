@@ -1,0 +1,10 @@
+Package: me.nepeta.axon
+Name: Axon Reborn
+Depends: mobilesubstrate, firmware (>= 14.0), preferenceloader, com.opa334.libroot
+Conflicts: io.ominousness.stackxi, com.thomasfinch.priorityhub, com.ioscreatix.intelixbeta, com.ioscreatix.intelix, com.spiritoflogic.ncunify, com.spiritoflogic.unifyx, com.hidan.nclink10, org.coolstar.ventana-modern, org.coolstar.ventana, org.s1ris.spinxi
+Version: 2.0
+Architecture: iphoneos-arm64
+Description: Priority Hub for iOS 14-16 (Rootless/RootHide)
+Maintainer: Baw Appie
+Author: Nepeta & Baw Appie
+Section: Tweaks

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>items</key>
+    <array>
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>General</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <true/>
+            <key>defaults</key>
+            <string>me.nepeta.axon</string>
+            <key>key</key>
+            <string>Enabled</string>
+            <key>label</key>
+            <string>Enabled</string>
+            <key>PostNotification</key>
+            <string>me.nepeta.axon/ReloadPrefs</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>Appearance</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <true/>
+            <key>defaults</key>
+            <string>me.nepeta.axon</string>
+            <key>key</key>
+            <string>BadgesEnabled</string>
+            <key>label</key>
+            <string>Show Badges</string>
+            <key>PostNotification</key>
+            <string>me.nepeta.axon/ReloadPrefs</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <true/>
+            <key>defaults</key>
+            <string>me.nepeta.axon</string>
+            <key>key</key>
+            <string>BadgesShowBackground</string>
+            <key>label</key>
+            <string>Badge Background</string>
+            <key>PostNotification</key>
+            <string>me.nepeta.axon/ReloadPrefs</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <true/>
+            <key>defaults</key>
+            <string>me.nepeta.axon</string>
+            <key>key</key>
+            <string>HapticFeedback</string>
+            <key>label</key>
+            <string>Haptic Feedback</string>
+            <key>PostNotification</key>
+            <string>me.nepeta.axon/ReloadPrefs</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>Swipe Gestures (New!)</string>
+            <key>footerText</key>
+            <string>Swipe up on an app icon to clear its notifications. Swipe down to clear all notifications.</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <true/>
+            <key>defaults</key>
+            <string>me.nepeta.axon</string>
+            <key>key</key>
+            <string>SwipeClearEnabled</string>
+            <key>label</key>
+            <string>Swipe Up: Clear App</string>
+            <key>PostNotification</key>
+            <string>me.nepeta.axon/ReloadPrefs</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <true/>
+            <key>defaults</key>
+            <string>me.nepeta.axon</string>
+            <key>key</key>
+            <string>SwipeClearAllEnabled</string>
+            <key>label</key>
+            <string>Swipe Down: Clear All</string>
+            <key>PostNotification</key>
+            <string>me.nepeta.axon/ReloadPrefs</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>label</key>
+            <string>Layout</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <false/>
+            <key>defaults</key>
+            <string>me.nepeta.axon</string>
+            <key>key</key>
+            <string>Vertical</string>
+            <key>label</key>
+            <string>Vertical Mode</string>
+            <key>PostNotification</key>
+            <string>me.nepeta.axon/ReloadPrefs</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>footerText</key>
+            <string>Axon Reborn v2.0 - iOS 14-16 Rootless/RootHide Support</string>
+        </dict>
+    </array>
+    <key>title</key>
+    <string>Axon Reborn</string>
+</dict>
+</plist>
