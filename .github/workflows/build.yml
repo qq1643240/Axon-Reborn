@@ -15,45 +15,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Setup Theos
+    - name: Checkout Theos
       uses: actions/checkout@v4
       with:
         repository: theos/theos
         path: theos
         submodules: recursive
         
+    - name: Checkout iOS SDKs
+      uses: actions/checkout@v4
+      with:
+        repository: theos/sdks
+        path: theos/sdks
+        
     - name: Install dependencies
       run: |
         brew install dpkg ldid xz
-        
-    - name: Download and setup iOS SDK
-      run: |
-        export THEOS=$(pwd)/theos
-        mkdir -p $THEOS/sdks
-        
-        echo "Downloading iOS SDK from official Theos repo..."
-        curl -L --fail -o /tmp/sdk.tar.xz \
-          "https://github.com/theos/sdks/releases/download/1/iPhoneOS14.5.sdk.tar.xz"
-        
-        echo "Downloaded file info:"
-        ls -la /tmp/sdk.tar.xz
-        file /tmp/sdk.tar.xz
-        
-        echo "Extracting SDK..."
-        cd $THEOS/sdks
-        tar -xJf /tmp/sdk.tar.xz
-        rm /tmp/sdk.tar.xz
-        
-        echo "SDK directory contents:"
-        ls -la $THEOS/sdks/
-        
-    - name: Download libroot
-      run: |
-        export THEOS=$(pwd)/theos
-        mkdir -p $THEOS/lib
-        curl -L -o $THEOS/lib/libroothide.dylib \
-          "https://raw.githubusercontent.com/opa334/libroot/main/libroothide.dylib" || true
-        ls -la $THEOS/lib/
         
     - name: Build Tweak
       run: |
